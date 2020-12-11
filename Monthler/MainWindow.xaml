@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Monthler"
         mc:Ignorable="d"
-        Title="Monthler" Height="450" Width="699" WindowStartupLocation="CenterScreen" Icon="/icon-monthler.png">
+        Title="Monthler" Height="450" Width="699" WindowStartupLocation="CenterScreen" Icon="/icon-monthler.png" MinHeight="210" MinWidth="200">
     <WrapPanel>
-                
+        <Calendar Margin="2"/>
+        <Calendar Margin="2"/>
+        <Calendar Margin="2"/>
+        <Calendar Margin="2"/>
+        <Calendar Margin="2"/>
     </WrapPanel>
 </Window>
