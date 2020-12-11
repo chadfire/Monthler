@@ -20,6 +20,14 @@ namespace Monthler
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        // Fields
+
+        /// <summary>
+        /// Whether the window always stays on top.
+        /// </summary>
+        private bool isWindowPinned = false;
+
         public MainWindow()
         {
             InitializeComponent();
