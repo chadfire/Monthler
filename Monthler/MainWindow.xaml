@@ -16,7 +16,7 @@
         <!--#endregion-->
         
         <!--#region Header buttons -->
-        <Button x:Name="BtnPinWindow" Content="Pin Window" ToolTip="Pinning the windows make this window always above other windows." Grid.Row="0"/>
+        <Button x:Name="BtnPinWindow" Content="Pin Window" ToolTip="Pinning the windows make this window always above other windows." Grid.Row="0" Click="BtnPinWindow_Click"/>
         <!--#endregion-->
         
         <!--#region Calendars -->
