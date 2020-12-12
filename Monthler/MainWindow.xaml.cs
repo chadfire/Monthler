@@ -45,6 +45,7 @@ namespace Monthler
             this.AddHotKeys();
         }
 
+        #region Header Buttons
 
         #region Pinning window
 
@@ -74,6 +75,15 @@ namespace Monthler
         }
 
         #endregion // Pinning window
+
+        #region ResetDates
+
+        private void BtnResetCalendars_Click(object sender, RoutedEventArgs e)
+            => this.CalendarGroup.ResetCalendarDates();
+
+        #endregion // Reset Dates
+
+        #endregion // Header Buttons
 
         #region Application Menus
 

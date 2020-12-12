@@ -76,7 +76,7 @@ namespace Monthler.Calendars
         {
             for (int i = 0; i < this.Calendars.Count; i++)
             {
-                this.Calendars[i].DisplayDate = DateTime.Now.AddMonths(i);
+                this.Calendars[i].DisplayDate = new DateTime(DateTime.Now.Year, i + 1, DateTime.Now.Day);
             }
         }
 

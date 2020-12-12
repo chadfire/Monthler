@@ -9,7 +9,8 @@
     <Grid Name="layoutGrid">
         <!--#region column defs -->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="11*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
@@ -18,7 +19,7 @@
         </Grid.RowDefinitions>
         <!--#endregion-->
         <!--#region Application Menu-->
-        <Menu Grid.Row="0">
+        <Menu Grid.Row="0" Grid.ColumnSpan="2">
             <MenuItem Header="Edit">
                 <MenuItem Header="_Advance Year" InputGestureText="Ctrl+D" x:Name="MiAdvanceYear" Click="MiAdvanceYear_Click"></MenuItem>
                 <MenuItem Header="_Subtract Year" InputGestureText="Ctrl+A" x:Name="MiSubtractYear" Click="MiSubtractYear_Click"></MenuItem>
@@ -29,9 +30,10 @@
         <!--#endregion-->
         <!--#region Header buttons -->
         <Button x:Name="BtnPinWindow" Content="Pin Window" ToolTip="Pinning the windows make this window always above other windows." Grid.Row="1" Click="BtnPinWindow_Click"/>
+        <Button x:Name="BtnResetCalendars" Content="Reset Dates" ToolTip="This will reset the calendars to the current year." Grid.Row="1" Grid.Column="1" Click="BtnResetCalendars_Click"/>
         <!--#endregion-->
         <!--#region Calendars -->
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="2">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="2" Grid.ColumnSpan="2">
             <ItemsControl ItemsSource="{Binding CalendarGroup.Calendars}" Margin="2">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
