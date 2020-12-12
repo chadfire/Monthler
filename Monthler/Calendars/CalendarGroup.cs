@@ -26,7 +26,7 @@ namespace Monthler.Calendars
 
         #region Properties
 
-        public ObservableCollection<Calendar> Calendars { get; set; } = new ObservableCollection<Calendar>();
+        public List<Calendar> Calendars { get; set; } = new List<Calendar>();
 
         #endregion
 
@@ -36,15 +36,15 @@ namespace Monthler.Calendars
         /// Adds a set amount of year to each calendar
         /// </summary>
         /// <param name="yearsToAdd"></param>
-        //public void AddYears(int yearsToAdd)
-        //    => this.Calendars.ForEach(cal => cal.DisplayDate = cal.DisplayDate.AddYears(yearsToAdd));
+        public void AddYears(int yearsToAdd)
+            => this.Calendars.ForEach(cal => cal.DisplayDate = cal.DisplayDate.AddYears(yearsToAdd));
 
         /// <summary>
         /// Sets the year for all the calendars
         /// </summary>
         /// <param name="year">The year to set all the calendars to</param>
-        //public void SetYear(int year)
-        //    => this.Calendars.ForEach(cal => cal.DisplayDate = new DateTime(year, cal.DisplayDate.Month, cal.DisplayDate.Day));
+        public void SetYear(int year)
+            => this.Calendars.ForEach(cal => cal.DisplayDate = new DateTime(year, cal.DisplayDate.Month, cal.DisplayDate.Day));
 
         /// <summary>
         /// Clears out the all the calendars. Creates new ones in their place.
