@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Monthler.Calendars;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,35 +31,22 @@ namespace Monthler
         private bool isWindowPinned = false;
 
         /// <summary>
-        /// The list of calendars displayed in the wrap layout.
+        /// The calendars to display to the user.
         /// </summary>
-        public List<Calendar> Calendars = new List<Calendar>();
-
-        #endregion
-
-        #region Keybinds
-
-        RoutedCommand newCmd = new RoutedCommand();
+        public CalendarGroup CalendarGroup { get; set; }
 
         #endregion
 
         public MainWindow()
         {
-            InitializeComponent();
-            newCmd.InputGestures.Add(new KeyGesture(Key.N, ModifierKeys.Control));
-            CommandBindings.Add(new CommandBinding(newCmd, MiAdvanceYear_Click));
+            CalendarGroup = new CalendarGroup();
 
-            // Create starting calendars
-            const int CALENDARS_TO_CREATE = 12;
-            for (int i = 0; i < CALENDARS_TO_CREATE; i++)
-            {
-                Calendars.Add(new Calendar()
-                {
-                    DisplayDate = new DateTime(DateTime.Now.Year, i+1, DateTime.Now.Day)
-                });
-                WpCalendars.Children.Add(Calendars[i]);
-            }
+            InitializeComponent();
+
+            this.DataContext = this;
+            this.AddHotKeys();
         }
+
 
         #region Pinning window
 
@@ -97,17 +86,36 @@ namespace Monthler
         /// <param name="e"></param>
         private void MiAdvanceYear_Click(object sender, RoutedEventArgs e)
         {
-            AdvanceYear();
+
         }
 
-        public void AdvanceYear()
+        #endregion
+
+        #region Hotkeys
+
+        private void AddHotKeys()
         {
-            WpCalendars.Children.RemoveRange(0, WpCalendars.Children.Count);
-            foreach (var calendar in Calendars)
+            try
             {
-                calendar.DisplayDate = calendar.DisplayDate.AddYears(1);
-                WpCalendars.Children.Add(calendar);
+                RoutedCommand firstSettings = new RoutedCommand();
+                firstSettings.InputGestures.Add(new KeyGesture(Key.A, ModifierKeys.Alt));
+                CommandBindings.Add(new CommandBinding(firstSettings, My_first_event_handler));
+
+                RoutedCommand secondSettings = new RoutedCommand();
+                secondSettings.InputGestures.Add(new KeyGesture(Key.B, ModifierKeys.Alt));
+                CommandBindings.Add(new CommandBinding(secondSettings, My_first_event_handler));
             }
+            catch (Exception)
+            {
+                //handle exception error
+                MessageBox.Show("Error: Could not load hotkeys", "Error");
+            }
+        }
+
+        private void My_first_event_handler(object sender, ExecutedRoutedEventArgs e)
+        {
+            //handler code goes here.
+            MessageBox.Show("Alt+A key pressed");
         }
 
         #endregion

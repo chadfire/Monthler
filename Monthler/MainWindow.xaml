@@ -17,7 +17,6 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <!--#endregion-->
-        
         <!--#region Application Menu-->
         <Menu Grid.Row="0">
             <MenuItem Header="Edit">
@@ -28,16 +27,18 @@
             </MenuItem>
         </Menu>
         <!--#endregion-->
-
-
         <!--#region Header buttons -->
         <Button x:Name="BtnPinWindow" Content="Pin Window" ToolTip="Pinning the windows make this window always above other windows." Grid.Row="1" Click="BtnPinWindow_Click"/>
         <!--#endregion-->
-
         <!--#region Calendars -->
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="2">
-            <WrapPanel x:Name="WpCalendars">
-            </WrapPanel>
+            <ItemsControl ItemsSource="{Binding CalendarGroup.Calendars}" Margin="2">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
         </ScrollViewer>
         <!--#endregion-->
     </Grid>
