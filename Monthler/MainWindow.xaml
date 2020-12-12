@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Monthler"
         mc:Ignorable="d"
-        Title="Monthler" Height="584" Width="399" WindowStartupLocation="CenterScreen" Icon="/icon-monthler.png" MinHeight="210" MinWidth="200">
-    <Grid Name="layoutGrid" Background="LightSteelBlue">
+        Title="Monthler" Height="584" Width="399" WindowStartupLocation="CenterScreen" Icon="/icon-monthler.png" MinHeight="210" MinWidth="200" Background="#FFD2CBFF">
+    <Grid Name="layoutGrid">
         <!--#region column defs -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
