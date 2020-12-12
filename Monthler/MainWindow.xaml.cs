@@ -88,6 +88,10 @@ namespace Monthler
         #region Application Menus
 
         #region Edit
+
+        private void MiResetDates_Click(object sender, RoutedEventArgs e)
+            => this.CalendarGroup.ResetCalendarDates();
+
         /// <summary>
         /// Advance year from menu
         /// </summary>
@@ -116,6 +120,10 @@ namespace Monthler
             try
             {
                 // Edit App Context
+                RoutedCommand ResetDates = new RoutedCommand();
+                ResetDates.InputGestures.Add(new KeyGesture(Key.R, ModifierKeys.Control));
+                CommandBindings.Add(new CommandBinding(ResetDates, MiResetDates_Click));
+
                 RoutedCommand AddYear = new RoutedCommand();
                 AddYear.InputGestures.Add(new KeyGesture(Key.D, ModifierKeys.Control));
                 CommandBindings.Add(new CommandBinding(AddYear, MiAdvanceYear_Click));

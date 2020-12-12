@@ -21,6 +21,7 @@
         <!--#region Application Menu-->
         <Menu Grid.Row="0" Grid.ColumnSpan="2">
             <MenuItem Header="Edit">
+                <MenuItem Header="_Reset Dates" InputGestureText="Ctrl+R" x:Name="MiResetDates" Click="MiResetDates_Click"></MenuItem>
                 <MenuItem Header="_Advance Year" InputGestureText="Ctrl+D" x:Name="MiAdvanceYear" Click="MiAdvanceYear_Click"></MenuItem>
                 <MenuItem Header="_Subtract Year" InputGestureText="Ctrl+A" x:Name="MiSubtractYear" Click="MiSubtractYear_Click"></MenuItem>
                 <MenuItem Header="_Advance 10 Years" InputGestureText="Ctrl+E" x:Name="MiAdd10Years" Click="MiAdd10Years_Click"></MenuItem>
