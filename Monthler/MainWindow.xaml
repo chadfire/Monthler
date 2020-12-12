@@ -20,10 +20,10 @@
         <!--#region Application Menu-->
         <Menu Grid.Row="0">
             <MenuItem Header="Edit">
-                <MenuItem Header="_Advance Year" InputGestureText="Ctrl+N" x:Name="MiAdvanceYear" Click="MiAdvanceYear_Click"></MenuItem>
-                <MenuItem Header="_Subtract Year" InputGestureText="Ctrl+B" x:Name="MiSubtractYear" Click="MiSubtractYear_Click"></MenuItem>
-                <MenuItem Header="_Advance 10 Years" InputGestureText="Ctrl+Shift+N" x:Name="MiAdd10Years" Click="MiAdd10Years_Click"></MenuItem>
-                <MenuItem Header="_Subtract 10 Years" InputGestureText="Ctrl+Shift+B" x:Name="MiSubtract10Years" Click="MiSubtract10Years_Click"></MenuItem>
+                <MenuItem Header="_Advance Year" InputGestureText="Ctrl+D" x:Name="MiAdvanceYear" Click="MiAdvanceYear_Click"></MenuItem>
+                <MenuItem Header="_Subtract Year" InputGestureText="Ctrl+A" x:Name="MiSubtractYear" Click="MiSubtractYear_Click"></MenuItem>
+                <MenuItem Header="_Advance 10 Years" InputGestureText="Ctrl+E" x:Name="MiAdd10Years" Click="MiAdd10Years_Click"></MenuItem>
+                <MenuItem Header="_Subtract 10 Years" InputGestureText="Ctrl+Q" x:Name="MiSubtract10Years" Click="MiSubtract10Years_Click"></MenuItem>
             </MenuItem>
         </Menu>
         <!--#endregion-->

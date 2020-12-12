@@ -105,27 +105,33 @@ namespace Monthler
         {
             try
             {
-                RoutedCommand firstSettings = new RoutedCommand();
-                firstSettings.InputGestures.Add(new KeyGesture(Key.A, ModifierKeys.Alt));
-                CommandBindings.Add(new CommandBinding(firstSettings, My_first_event_handler));
+                // Edit App Context
+                RoutedCommand AddYear = new RoutedCommand();
+                AddYear.InputGestures.Add(new KeyGesture(Key.D, ModifierKeys.Control));
+                CommandBindings.Add(new CommandBinding(AddYear, MiAdvanceYear_Click));
 
-                RoutedCommand secondSettings = new RoutedCommand();
-                secondSettings.InputGestures.Add(new KeyGesture(Key.B, ModifierKeys.Alt));
-                CommandBindings.Add(new CommandBinding(secondSettings, My_first_event_handler));
+                RoutedCommand SubtractYear = new RoutedCommand();
+                SubtractYear.InputGestures.Add(new KeyGesture(Key.A, ModifierKeys.Control));
+                CommandBindings.Add(new CommandBinding(SubtractYear, MiSubtractYear_Click));
+
+                RoutedCommand Add10Years = new RoutedCommand();
+                Add10Years.InputGestures.Add(new KeyGesture(Key.E, ModifierKeys.Control));
+                CommandBindings.Add(new CommandBinding(Add10Years, MiAdd10Years_Click));
+
+                RoutedCommand Subtract10Years = new RoutedCommand();
+                Subtract10Years.InputGestures.Add(new KeyGesture(Key.Q, ModifierKeys.Control));
+                CommandBindings.Add(new CommandBinding(Subtract10Years, MiSubtract10Years_Click));
             }
             catch (Exception)
             {
                 //handle exception error
-                MessageBox.Show("Error: Could not load hotkeys", "Error");
+                string message = "Error: Some hotkeys could not load.";
+                string caption = "Error!";
+                MessageBoxButton buttons = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBox.Show(message, caption, buttons, icon);
             }
         }
-
-        private void My_first_event_handler(object sender, ExecutedRoutedEventArgs e)
-        {
-            //handler code goes here.
-            MessageBox.Show("Alt+A key pressed");
-        }
-
         #endregion //Hotkeys
     }
 }

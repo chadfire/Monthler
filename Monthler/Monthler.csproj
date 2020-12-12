@@ -7,22 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Assets\Images\**" />
-    <EmbeddedResource Remove="Assets\Images\**" />
-    <None Remove="Assets\Images\**" />
-    <Page Remove="Assets\Images\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="icon-monthler.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="icon-monthler.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Assets\" />
   </ItemGroup>
 
 </Project>
