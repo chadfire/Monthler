@@ -21,16 +21,33 @@ namespace Monthler
     public partial class MainWindow : Window
     {
 
-        // Fields
+        #region Fields
 
         /// <summary>
         /// Whether the window always stays on top.
         /// </summary>
         private bool isWindowPinned = false;
 
+        /// <summary>
+        /// The list of calendars displayed in the wrap layout.
+        /// </summary>
+        public List<Calendar> Calendars = new List<Calendar>();
+
+        #endregion
+
         public MainWindow()
         {
             InitializeComponent();
+            const int CALENDARS_TO_CREATE = 12;
+
+            for (int i = 0; i < CALENDARS_TO_CREATE; i++)
+            {
+                Calendars.Add(new Calendar()
+                {
+                    DisplayDate = new DateTime(DateTime.Now.Year, i+1, DateTime.Now.Day)
+                });
+                WpCalendars.Children.Add(Calendars[i]);
+            }
         }
 
         #region Pinning window
