@@ -33,14 +33,12 @@ namespace Monthler
         /// <summary>
         /// The calendars to display to the user.
         /// </summary>
-        public CalendarGroup CalendarGroup { get; set; }
+        public CalendarGroup CalendarGroup { get; set; } = new CalendarGroup();
 
-        #endregion
+        #endregion // Fields
 
         public MainWindow()
         {
-            CalendarGroup = new CalendarGroup();
-
             InitializeComponent();
 
             this.DataContext = this;
@@ -75,21 +73,31 @@ namespace Monthler
             }
         }
 
-        #endregion
+        #endregion // Pinning window
 
         #region Application Menus
 
+        #region Edit
         /// <summary>
         /// Advance year from menu
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void MiAdvanceYear_Click(object sender, RoutedEventArgs e)
-        {
+            => this.CalendarGroup.AddYears(1);
 
-        }
+        private void MiSubtractYear_Click(object sender, RoutedEventArgs e)
+            => this.CalendarGroup.AddYears(-1);
 
-        #endregion
+        private void MiAdd10Years_Click(object sender, RoutedEventArgs e)
+            => this.CalendarGroup.AddYears(10);
+
+        private void MiSubtract10Years_Click(object sender, RoutedEventArgs e)
+            => this.CalendarGroup.AddYears(-10);
+
+        #endregion // Edit
+
+        #endregion // Context menus
 
         #region Hotkeys
 
@@ -118,6 +126,6 @@ namespace Monthler
             MessageBox.Show("Alt+A key pressed");
         }
 
-        #endregion
+        #endregion //Hotkeys
     }
 }
