@@ -78,6 +78,9 @@ namespace Monthler
 
         #region ResetDates
 
+        /// <summary>
+        /// Button to reset all the dates to the current year
+        /// </summary>
         private void BtnResetCalendars_Click(object sender, RoutedEventArgs e)
             => this.CalendarGroup.ResetCalendarDates();
 
@@ -89,23 +92,33 @@ namespace Monthler
 
         #region Edit
 
+        /// <summary>
+        /// Resets all the calendars to the current year
+        /// </summary>
         private void MiResetDates_Click(object sender, RoutedEventArgs e)
             => this.CalendarGroup.ResetCalendarDates();
 
         /// <summary>
-        /// Advance year from menu
+        /// Advances a year from all the calendars
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void MiAdvanceYear_Click(object sender, RoutedEventArgs e)
             => this.CalendarGroup.AddYears(1);
 
+        /// <summary>
+        /// Subtracts a year from all the calendars
+        /// </summary>
         private void MiSubtractYear_Click(object sender, RoutedEventArgs e)
             => this.CalendarGroup.AddYears(-1);
 
+        /// <summary>
+        /// Adds 10 years to all the calendars
+        /// </summary>
         private void MiAdd10Years_Click(object sender, RoutedEventArgs e)
             => this.CalendarGroup.AddYears(10);
 
+        /// <summary>
+        /// Subtracts 10 years from all the calendars
+        /// </summary>
         private void MiSubtract10Years_Click(object sender, RoutedEventArgs e)
             => this.CalendarGroup.AddYears(-10);
 
@@ -150,6 +163,7 @@ namespace Monthler
                 MessageBox.Show(message, caption, buttons, icon);
             }
         }
+
         #endregion //Hotkeys
     }
 }
