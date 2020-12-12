@@ -35,11 +35,20 @@ namespace Monthler
 
         #endregion
 
+        #region Keybinds
+
+        RoutedCommand newCmd = new RoutedCommand();
+
+        #endregion
+
         public MainWindow()
         {
             InitializeComponent();
-            const int CALENDARS_TO_CREATE = 12;
+            newCmd.InputGestures.Add(new KeyGesture(Key.N, ModifierKeys.Control));
+            CommandBindings.Add(new CommandBinding(newCmd, MiAdvanceYear_Click));
 
+            // Create starting calendars
+            const int CALENDARS_TO_CREATE = 12;
             for (int i = 0; i < CALENDARS_TO_CREATE; i++)
             {
                 Calendars.Add(new Calendar()
@@ -74,6 +83,30 @@ namespace Monthler
             else
             {
                 BtnPinWindow.Content = "Pin Window";
+            }
+        }
+
+        #endregion
+
+        #region Application Menus
+
+        /// <summary>
+        /// Advance year from menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MiAdvanceYear_Click(object sender, RoutedEventArgs e)
+        {
+            AdvanceYear();
+        }
+
+        public void AdvanceYear()
+        {
+            WpCalendars.Children.RemoveRange(0, WpCalendars.Children.Count);
+            foreach (var calendar in Calendars)
+            {
+                calendar.DisplayDate = calendar.DisplayDate.AddYears(1);
+                WpCalendars.Children.Add(calendar);
             }
         }
 
