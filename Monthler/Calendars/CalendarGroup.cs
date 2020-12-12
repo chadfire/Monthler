@@ -22,19 +22,24 @@ namespace Monthler.Calendars
             this.CreateNewCalendarList(monthsToCreate);
         }
 
-        #endregion
+        #endregion // Constructors
 
         #region Properties
 
         public List<Calendar> Calendars { get; set; } = new List<Calendar>();
 
-        #endregion
+        #endregion // Properties
 
         #region Methods
+
+        // PRIVATE
+
+        #region Public
 
         /// <summary>
         /// Adds a set amount of year to each calendar
         /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException">If new date is invalid</exception>
         /// <param name="yearsToAdd"></param>
         public void AddYears(int yearsToAdd)
             => this.Calendars.ForEach(cal => cal.DisplayDate = cal.DisplayDate.AddYears(yearsToAdd));
@@ -42,6 +47,7 @@ namespace Monthler.Calendars
         /// <summary>
         /// Sets the year for all the calendars
         /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException">Date out of range</exception>
         /// <param name="year">The year to set all the calendars to</param>
         public void SetYear(int year)
             => this.Calendars.ForEach(cal => cal.DisplayDate = new DateTime(year, cal.DisplayDate.Month, cal.DisplayDate.Day));
@@ -74,6 +80,8 @@ namespace Monthler.Calendars
             }
         }
 
-        #endregion
+        #endregion // Public
+
+        #endregion // Methods
     }
 }
