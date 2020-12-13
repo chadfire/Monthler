@@ -5,8 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Monthler"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="699">
-    <WrapPanel>
-                
-    </WrapPanel>
+        Title="Monthler" Height="584" Width="399" WindowStartupLocation="CenterScreen" Icon="/icon-monthler.png" MinHeight="210" MinWidth="200" Background="#FFD2CBFF">
+    <Grid Name="layoutGrid">
+        <!--#region column defs -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="11*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <!--#endregion-->
+        <!--#region Application Menu-->
+        <Menu Grid.Row="0" Grid.ColumnSpan="2">
+            <MenuItem Header="Edit">
+                <MenuItem Header="_Reset Dates" InputGestureText="Ctrl+R" x:Name="MiResetDates" Click="MiResetDates_Click"></MenuItem>
+                <MenuItem Header="_Advance Year" InputGestureText="Ctrl+D" x:Name="MiAdvanceYear" Click="MiAdvanceYear_Click"></MenuItem>
+                <MenuItem Header="_Subtract Year" InputGestureText="Ctrl+A" x:Name="MiSubtractYear" Click="MiSubtractYear_Click"></MenuItem>
+                <MenuItem Header="_Advance 10 Years" InputGestureText="Ctrl+E" x:Name="MiAdd10Years" Click="MiAdd10Years_Click"></MenuItem>
+                <MenuItem Header="_Subtract 10 Years" InputGestureText="Ctrl+Q" x:Name="MiSubtract10Years" Click="MiSubtract10Years_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <!--#endregion-->
+        <!--#region Header buttons -->
+        <Button x:Name="BtnPinWindow" Content="Pin Window" ToolTip="Pinning the windows make this window always above other windows." Grid.Row="1" Click="BtnPinWindow_Click"/>
+        <Button x:Name="BtnResetCalendars" Content="Reset Dates" ToolTip="This will reset the calendars to the current year." Grid.Row="1" Grid.Column="1" Click="BtnResetCalendars_Click"/>
+        <!--#endregion-->
+        <!--#region Calendars -->
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="2" Grid.ColumnSpan="2">
+            <ItemsControl ItemsSource="{Binding CalendarGroup.Calendars}" Margin="2">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
+        <!--#endregion-->
+    </Grid>
 </Window>
