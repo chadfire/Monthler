@@ -32,8 +32,6 @@ namespace Monthler.Calendars
 
         #region Methods
 
-        // PRIVATE
-
         #region Public
 
         /// <summary>
