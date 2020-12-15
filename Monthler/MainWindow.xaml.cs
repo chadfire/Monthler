@@ -155,7 +155,10 @@ namespace Monthler
         {
             try
             {
-                // Edit App Context
+                #region Application Menus
+
+                #region Edit
+
                 RoutedCommand ResetDates = new RoutedCommand();
                 ResetDates.InputGestures.Add(new KeyGesture(Key.R, ModifierKeys.Control));
                 CommandBindings.Add(new CommandBinding(ResetDates, MiResetDates_Click));
@@ -175,6 +178,26 @@ namespace Monthler
                 RoutedCommand Subtract10Years = new RoutedCommand();
                 Subtract10Years.InputGestures.Add(new KeyGesture(Key.Q, ModifierKeys.Control));
                 CommandBindings.Add(new CommandBinding(Subtract10Years, MiSubtract10Years_Click));
+
+                #endregion // Edit
+
+                #region View
+
+                RoutedCommand CompactView = new RoutedCommand();
+                CompactView.InputGestures.Add(new KeyGesture(Key.Z, ModifierKeys.Control));
+                CommandBindings.Add(new CommandBinding(CompactView, MiCompactView_Click));
+
+                RoutedCommand NormalView = new RoutedCommand();
+                NormalView.InputGestures.Add(new KeyGesture(Key.X, ModifierKeys.Control));
+                CommandBindings.Add(new CommandBinding(NormalView, MiNormalView_Click));
+
+                RoutedCommand ExtendedView = new RoutedCommand();
+                ExtendedView.InputGestures.Add(new KeyGesture(Key.C, ModifierKeys.Control));
+                CommandBindings.Add(new CommandBinding(ExtendedView, MiExtendedView_Click));
+
+                #endregion // View
+
+                #endregion // Application menu
             }
             catch (Exception)
             {

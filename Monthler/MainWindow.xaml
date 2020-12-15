@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Monthler"
         mc:Ignorable="d"
-        Title="Monthler" Height="584" Width="399" WindowStartupLocation="CenterScreen" Icon="/icon-monthler.ico" MinHeight="210" MinWidth="210" Background="#FFD2CBFF">
+        Title="Monthler" Height="584" Width="407" WindowStartupLocation="CenterScreen" Icon="/icon-monthler.ico" MinHeight="210" MinWidth="210" Background="#FFD2CBFF">
     <Grid Name="layoutGrid">
         <!--#region column defs -->
         <Grid.ColumnDefinitions>
@@ -31,9 +31,9 @@
             <!--#endregion-->
             <!--#region View Menu-->
             <MenuItem Header="View">
-                <MenuItem Header="_Compact View" InputGestureText="Ctrl+1" x:Name="MiCompactView" Click="MiCompactView_Click"></MenuItem>
-                <MenuItem Header="_Normal View" InputGestureText="Ctrl+2" x:Name="MiNormalView" Click="MiNormalView_Click"></MenuItem>
-                <MenuItem Header="_Extended View" InputGestureText="Ctrl+3" x:Name="MiExtendedView" Click="MiExtendedView_Click"></MenuItem>
+                <MenuItem Header="_Compact View" InputGestureText="Ctrl+Z" x:Name="MiCompactView" Click="MiCompactView_Click"></MenuItem>
+                <MenuItem Header="_Normal View" InputGestureText="Ctrl+X" x:Name="MiNormalView" Click="MiNormalView_Click"></MenuItem>
+                <MenuItem Header="_Extended View" InputGestureText="Ctrl+C" x:Name="MiExtendedView" Click="MiExtendedView_Click"></MenuItem>
             </MenuItem>
             <!--#endregion-->
         </Menu>
