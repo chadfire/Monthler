@@ -40,9 +40,11 @@ namespace Monthler
         public MainWindow()
         {
             InitializeComponent();
-
             this.DataContext = this;
             this.AddHotKeys();
+
+            // Set starting view
+            this.CalendarGroup.ResizeCalendars(CalendarGroup.CalendarSize.Normal);
         }
 
         #region Header Buttons
