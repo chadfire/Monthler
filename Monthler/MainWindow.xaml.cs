@@ -124,7 +124,7 @@ namespace Monthler
 
         #endregion // Edit
 
-        #region View+
+        #region View
 
         /// <summary>
         /// Resizes the calendar to be in a compact view (smaller)
