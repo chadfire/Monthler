@@ -32,7 +32,7 @@ namespace Monthler.Calendars
 
         #region Methods
 
-        #region Public
+        // PUBLIC
 
         /// <summary>
         /// Adds a set amount of year to each calendar
@@ -61,7 +61,7 @@ namespace Monthler.Calendars
             {
                 this.Calendars.Add(new Calendar()
                 {
-                    DisplayDate = new DateTime(DateTime.Now.Year, i + 1, DateTime.Now.Day)
+                    DisplayDate = DateTime.Now.AddMonths(-2 + i)
                 });
             }
         }
@@ -74,11 +74,9 @@ namespace Monthler.Calendars
         {
             for (int i = 0; i < this.Calendars.Count; i++)
             {
-                this.Calendars[i].DisplayDate = new DateTime(DateTime.Now.Year, i + 1, DateTime.Now.Day);
+                this.Calendars[i].DisplayDate = DateTime.Now.AddMonths(-2 + i);
             }
         }
-
-        #endregion // Public
 
         #endregion // Methods
     }
