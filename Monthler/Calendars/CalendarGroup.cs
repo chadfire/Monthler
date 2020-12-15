@@ -52,6 +52,7 @@ namespace Monthler.Calendars
 
         /// <summary>
         /// Clears out the all the calendars. Creates new ones in their place.
+        /// Sets the starting calendar to two months behind todays date
         /// </summary>
         /// <param name="numCalendarsToCreate">How many calendars to create, one per month.</param>
         public void CreateNewCalendarList(int numCalendarsToCreate)
@@ -67,7 +68,7 @@ namespace Monthler.Calendars
         }
 
         /// <summary>
-        /// Sets the starting calendar to jan of current year and for
+        /// Sets the starting calendar to two months behind todays date
         /// each calendar, increment by one month. jan, feb....
         /// </summary>
         public void ResetCalendarDates()
