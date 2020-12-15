@@ -24,6 +24,30 @@ namespace Monthler.Calendars
 
         #endregion // Constructors
 
+        #region Fields
+
+        /// <summary>
+        /// Defines the height, width of a calendar in pixles
+        /// </summary>
+        public readonly List<(int width, int height)> CalendarDimensions = new List<(int width, int height)>
+        {
+            (172, 150), // Compact
+            (179, 165), // Normal
+            (185, 168)  // Extended
+        };
+
+        /// <summary>
+        /// Creates a reference to the different calendar sizes
+        /// </summary>
+        public enum CalendarSize
+        {
+            Compact,
+            Normal,
+            Extended
+        }
+
+        #endregion // Fields
+
         #region Properties
 
         public List<Calendar> Calendars { get; set; } = new List<Calendar>();
@@ -76,6 +100,28 @@ namespace Monthler.Calendars
             for (int i = 0; i < this.Calendars.Count; i++)
             {
                 this.Calendars[i].DisplayDate = DateTime.Now.AddMonths(-2 + i);
+            }
+        }
+
+        /// <summary>
+        /// Gets the dimensions of a calendar of width, height in pixles
+        /// </summary>
+        /// <param name="calendarSize">Specifies what size the calendar should be</param>
+        /// <returns></returns>
+        public (int width, int height) GetCalendarDimension(CalendarSize calendarSize)
+            => this.CalendarDimensions[(int)calendarSize];
+
+        /// <summary>
+        /// Resizes the pixel size of each calendar.
+        /// </summary>
+        /// <param name="calendarSize">Specifiy what size should the calendars be</param>
+        public void ResizeCalendars(CalendarSize calendarSize)
+        {
+            (int width, int height) = GetCalendarDimension(calendarSize);
+            foreach (Calendar calendar in this.Calendars)
+            {
+                calendar.Height = height;
+                calendar.Width = width;
             }
         }
 

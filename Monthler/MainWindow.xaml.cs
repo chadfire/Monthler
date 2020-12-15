@@ -124,6 +124,29 @@ namespace Monthler
 
         #endregion // Edit
 
+        #region View+
+
+        /// <summary>
+        /// Resizes the calendar to be in a compact view (smaller)
+        /// </summary>
+        private void MiCompactView_Click(object sender, RoutedEventArgs e)
+            => this.CalendarGroup.ResizeCalendars(CalendarGroup.CalendarSize.Compact);
+
+        /// <summary>
+        /// Resizes the calendar to be a normal size
+        /// </summary>
+        private void MiNormalView_Click(object sender, RoutedEventArgs e)
+            => this.CalendarGroup.ResizeCalendars(CalendarGroup.CalendarSize.Normal);
+
+        /// <summary>
+        /// Resizes the calendar to have more padding around it
+        /// </summary>
+        private void MiExtendedView_Click(object sender, RoutedEventArgs e)
+            => this.CalendarGroup.ResizeCalendars(CalendarGroup.CalendarSize.Extended);
+
+
+        #endregion // View
+
         #endregion // Context menus
 
         #region Hotkeys
