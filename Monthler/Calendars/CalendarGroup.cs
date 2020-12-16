@@ -59,12 +59,20 @@ namespace Monthler.Calendars
         // PUBLIC
 
         /// <summary>
-        /// Adds a set amount of year to each calendar
+        /// Adds a set amount of years to each calendar
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException">If new date is invalid</exception>
         /// <param name="yearsToAdd"></param>
         public void AddYears(int yearsToAdd)
             => this.Calendars.ForEach(cal => cal.DisplayDate = cal.DisplayDate.AddYears(yearsToAdd));
+
+        /// <summary>
+        /// Adds a set amount of months to each calendar
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException">If new date is invalid</exception>
+        /// <param name="monthsToAdd">How many months to add to each calendar</param>
+        public void AddMonths(int monthsToAdd)
+            => this.Calendars.ForEach(cal => cal.DisplayDate = cal.DisplayDate.AddMonths(monthsToAdd));
 
         /// <summary>
         /// Sets the year for all the calendars
