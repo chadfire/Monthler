@@ -30,7 +30,13 @@
             </MenuItem>
             <!--#endregion-->
             <!--#region View Menu-->
+            <!-- Change Themes -->
             <MenuItem Header="View">
+                <MenuItem Header="Themes">
+                    <MenuItem Header="_Season Theme" InputGestureText="Ctrl+V" x:Name="MiSeasonTheme" Click="MiSeasonTheme_Click"></MenuItem>
+                    <MenuItem Header="_Default Theme" InputGestureText="Ctrl+V" x:Name="MiDefaultTheme" Click="MiDefaultTheme_Click"></MenuItem>
+                <!-- Change Calendar Spacing -->
+                </MenuItem>
                 <MenuItem Header="_Compact View" InputGestureText="Ctrl+Z" x:Name="MiCompactView" Click="MiCompactView_Click"></MenuItem>
                 <MenuItem Header="_Normal View" InputGestureText="Ctrl+X" x:Name="MiNormalView" Click="MiNormalView_Click"></MenuItem>
                 <MenuItem Header="_Extended View" InputGestureText="Ctrl+C" x:Name="MiExtendedView" Click="MiExtendedView_Click"></MenuItem>

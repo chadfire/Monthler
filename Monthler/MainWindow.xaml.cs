@@ -31,6 +31,11 @@ namespace Monthler
         private bool isWindowPinned = false;
 
         /// <summary>
+        /// Whether the current theme is the default one.
+        /// </summary>
+        private bool isDefaultTheme = false;
+
+        /// <summary>
         /// The calendars to display to the user.
         /// </summary>
         public CalendarGroup CalendarGroup { get; set; } = new CalendarGroup();
@@ -44,7 +49,8 @@ namespace Monthler
             this.AddHotKeys();
 
             // Set starting view
-            this.CalendarGroup.ResizeCalendars(CalendarGroup.CalendarSize.Normal);
+            this.CalendarGroup.ResizeCalendars(CalendarGroup.CalendarSize.Compact);
+            this.ApplySeasonalTheme();
         }
 
         #region Header Buttons
@@ -128,6 +134,100 @@ namespace Monthler
 
         #region View
 
+        // Change Themes
+
+        /// <summary>
+        /// Change to default theme
+        /// </summary>
+        private void MiSeasonTheme_Click(object sender, RoutedEventArgs e)
+            => ApplySeasonalTheme();
+
+        /// <summary>
+        /// Change to default theme
+        /// </summary>
+        private void MiDefaultTheme_Click(object sender, RoutedEventArgs e)
+            => ApplyDefaultTheme();
+
+        /// <summary>
+        /// Applies a seasonal theme to each month
+        /// </summary>
+        private void ApplySeasonalTheme()
+            => this.CalendarGroup.Calendars.ForEach(cal => cal.Style = GetStyleOnMonth(cal.DisplayDate));
+
+        /// <summary>
+        /// Changes the calendar themes to default colors
+        /// </summary>
+        private void ApplyDefaultTheme()
+            => this.CalendarGroup.Calendars.ForEach(cal => cal.Style = GetCalendarStyle(CalendarStyles.Default));
+
+
+        /// <summary>
+        /// Different Calendar Styles
+        /// </summary>
+        public enum CalendarStyles
+        {
+            Winter,
+            Spring,
+            Summer,
+            Fall,
+            Default
+        }
+
+        /// <summary>
+        /// Get a pertical style froms the styles enum
+        /// </summary>
+        /// <param name="styles">A style to choose from</param>
+        /// <returns>T</returns>
+        private Style GetCalendarStyle(CalendarStyles styles)
+        {
+            return styles switch
+            {
+                CalendarStyles.Winter => (Style)FindResource("CalendarWinterStyle"),
+                CalendarStyles.Spring => (Style)FindResource("CalendarSpringStyle"),
+                CalendarStyles.Summer => (Style)FindResource("CalendarSummerStyle"),
+                CalendarStyles.Fall => (Style)FindResource("CalendarFallStyle"),
+                CalendarStyles.Default => (Style)FindResource("CalendarDefaultStyle"),
+                _ => (Style)FindResource("CalendarDefaultStyle"),
+            };
+        }
+
+        /// <summary>
+        /// Gets a style based on what month it is. Winter, summer...
+        /// </summary>
+        /// <param name="dateTime">The datetime to pick the style from</param>
+        /// <returns>A new style based on the month</returns>
+        private Style GetStyleOnMonth(DateTime dateTime)
+        {
+            CalendarStyles currentStyle = CalendarStyles.Default;
+            // Winter
+            if (dateTime.Month == 12 || dateTime.Month < 3)
+                currentStyle = CalendarStyles.Winter;
+            // Spring
+            else if (dateTime.Month >= 3 && dateTime.Month <= 5)
+                currentStyle = CalendarStyles.Spring;
+            // Summer
+            else if (dateTime.Month > 5 && dateTime.Month < 9)
+                currentStyle = CalendarStyles.Summer;
+            // Fall
+            else if (dateTime.Month >= 9 && dateTime.Month < 12)
+                currentStyle = CalendarStyles.Fall;
+            return GetCalendarStyle(currentStyle);
+        }
+
+        /// <summary>
+        /// Toggles the between default and seasonal theme
+        /// </summary>
+        private void ToggleTheme(object sender, RoutedEventArgs e)
+        {
+            isDefaultTheme = !isDefaultTheme;
+            if (isDefaultTheme)
+                ApplyDefaultTheme();
+            else
+                ApplySeasonalTheme();
+        }
+
+        // Change Calendar Spacing 
+
         /// <summary>
         /// Resizes the calendar to be in a compact view (smaller)
         /// </summary>
@@ -166,7 +266,7 @@ namespace Monthler
                 CommandBindings.Add(new CommandBinding(ResetDates, MiResetDates_Click));
 
                 RoutedCommand AddYear = new RoutedCommand();
-                AddYear.InputGestures.Add(new KeyGesture(Key.D, ModifierKeys.Control));
+                AddYear.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
                 CommandBindings.Add(new CommandBinding(AddYear, MiAdvanceYear_Click));
 
                 RoutedCommand SubtractYear = new RoutedCommand();
@@ -178,12 +278,20 @@ namespace Monthler
                 CommandBindings.Add(new CommandBinding(Add10Years, MiAdd10Years_Click));
 
                 RoutedCommand Subtract10Years = new RoutedCommand();
-                Subtract10Years.InputGestures.Add(new KeyGesture(Key.Q, ModifierKeys.Control));
+                Subtract10Years.InputGestures.Add(new KeyGesture(Key.D, ModifierKeys.Control));
                 CommandBindings.Add(new CommandBinding(Subtract10Years, MiSubtract10Years_Click));
 
                 #endregion // Edit
 
                 #region View
+
+                // Themes
+
+                RoutedCommand TogTheme = new RoutedCommand();
+                TogTheme.InputGestures.Add(new KeyGesture(Key.V, ModifierKeys.Control));
+                CommandBindings.Add(new CommandBinding(TogTheme, ToggleTheme));
+
+                // Calendar sizes
 
                 RoutedCommand CompactView = new RoutedCommand();
                 CompactView.InputGestures.Add(new KeyGesture(Key.Z, ModifierKeys.Control));
