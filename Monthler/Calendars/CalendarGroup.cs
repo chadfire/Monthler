@@ -24,6 +24,30 @@ namespace Monthler.Calendars
 
         #endregion // Constructors
 
+        #region Fields
+
+        /// <summary>
+        /// Defines the height, width of a calendar in pixles
+        /// </summary>
+        public readonly List<(int width, int height)> CalendarDimensions = new List<(int width, int height)>
+        {
+            (172, 150), // Compact
+            (179, 165), // Normal
+            (185, 168)  // Extended
+        };
+
+        /// <summary>
+        /// Creates a reference to the different calendar sizes
+        /// </summary>
+        public enum CalendarSize
+        {
+            Compact,
+            Normal,
+            Extended
+        }
+
+        #endregion // Fields
+
         #region Properties
 
         public List<Calendar> Calendars { get; set; } = new List<Calendar>();
@@ -32,17 +56,23 @@ namespace Monthler.Calendars
 
         #region Methods
 
-        // PRIVATE
-
-        #region Public
+        // PUBLIC
 
         /// <summary>
-        /// Adds a set amount of year to each calendar
+        /// Adds a set amount of years to each calendar
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException">If new date is invalid</exception>
         /// <param name="yearsToAdd"></param>
         public void AddYears(int yearsToAdd)
             => this.Calendars.ForEach(cal => cal.DisplayDate = cal.DisplayDate.AddYears(yearsToAdd));
+
+        /// <summary>
+        /// Adds a set amount of months to each calendar
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException">If new date is invalid</exception>
+        /// <param name="monthsToAdd">How many months to add to each calendar</param>
+        public void AddMonths(int monthsToAdd)
+            => this.Calendars.ForEach(cal => cal.DisplayDate = cal.DisplayDate.AddMonths(monthsToAdd));
 
         /// <summary>
         /// Sets the year for all the calendars
@@ -54,6 +84,7 @@ namespace Monthler.Calendars
 
         /// <summary>
         /// Clears out the all the calendars. Creates new ones in their place.
+        /// Sets the starting calendar to two months behind todays date
         /// </summary>
         /// <param name="numCalendarsToCreate">How many calendars to create, one per month.</param>
         public void CreateNewCalendarList(int numCalendarsToCreate)
@@ -63,24 +94,44 @@ namespace Monthler.Calendars
             {
                 this.Calendars.Add(new Calendar()
                 {
-                    DisplayDate = new DateTime(DateTime.Now.Year, i + 1, DateTime.Now.Day)
+                    DisplayDate = DateTime.Now.AddMonths(-2 + i)
                 });
             }
         }
 
         /// <summary>
-        /// Sets the starting calendar to jan of current year and for
+        /// Sets the starting calendar to two months behind todays date
         /// each calendar, increment by one month. jan, feb....
         /// </summary>
         public void ResetCalendarDates()
         {
             for (int i = 0; i < this.Calendars.Count; i++)
             {
-                this.Calendars[i].DisplayDate = new DateTime(DateTime.Now.Year, i + 1, DateTime.Now.Day);
+                this.Calendars[i].DisplayDate = DateTime.Now.AddMonths(-2 + i);
             }
         }
 
-        #endregion // Public
+        /// <summary>
+        /// Gets the dimensions of a calendar of width, height in pixles
+        /// </summary>
+        /// <param name="calendarSize">Specifies what size the calendar should be</param>
+        /// <returns></returns>
+        public (int width, int height) GetCalendarDimension(CalendarSize calendarSize)
+            => this.CalendarDimensions[(int)calendarSize];
+
+        /// <summary>
+        /// Resizes the pixel size of each calendar.
+        /// </summary>
+        /// <param name="calendarSize">Specifiy what size should the calendars be</param>
+        public void ResizeCalendars(CalendarSize calendarSize)
+        {
+            (int width, int height) = GetCalendarDimension(calendarSize);
+            foreach (Calendar calendar in this.Calendars)
+            {
+                calendar.Height = height;
+                calendar.Width = width;
+            }
+        }
 
         #endregion // Methods
     }

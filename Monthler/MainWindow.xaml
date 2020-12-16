@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Monthler"
         mc:Ignorable="d"
-        Title="Monthler" Height="584" Width="399" WindowStartupLocation="CenterScreen" Icon="/icon-monthler.ico" MinHeight="210" MinWidth="200" Background="#FFD2CBFF">
+        Title="Monthler" Height="584" Width="407" WindowStartupLocation="CenterScreen" Icon="/icon-monthler.ico" MinHeight="210" MinWidth="210" Background="#FFD2CBFF">
     <Grid Name="layoutGrid">
         <!--#region column defs -->
         <Grid.ColumnDefinitions>
@@ -20,13 +20,30 @@
         <!--#endregion-->
         <!--#region Application Menu-->
         <Menu Grid.Row="0" Grid.ColumnSpan="2">
+            <!--#region Edit Menu -->
             <MenuItem Header="Edit">
                 <MenuItem Header="_Reset Dates" InputGestureText="Ctrl+R" x:Name="MiResetDates" Click="MiResetDates_Click"></MenuItem>
-                <MenuItem Header="_Advance Year" InputGestureText="Ctrl+D" x:Name="MiAdvanceYear" Click="MiAdvanceYear_Click"></MenuItem>
+                <MenuItem Header="_Add Month" InputGestureText="Ctrl+W" x:Name="MiAddMonth" Click="MiAddMonth_Click"></MenuItem>
+                <MenuItem Header="_Subtract Month" InputGestureText="Ctrl+Q" x:Name="MiSubtractMonth" Click="MiSubtractMonth_Click"></MenuItem>
+                <MenuItem Header="_Advance Year" InputGestureText="Ctrl+S" x:Name="MiAdvanceYear" Click="MiAdvanceYear_Click"></MenuItem>
                 <MenuItem Header="_Subtract Year" InputGestureText="Ctrl+A" x:Name="MiSubtractYear" Click="MiSubtractYear_Click"></MenuItem>
                 <MenuItem Header="_Advance 10 Years" InputGestureText="Ctrl+E" x:Name="MiAdd10Years" Click="MiAdd10Years_Click"></MenuItem>
-                <MenuItem Header="_Subtract 10 Years" InputGestureText="Ctrl+Q" x:Name="MiSubtract10Years" Click="MiSubtract10Years_Click"></MenuItem>
+                <MenuItem Header="_Subtract 10 Years" InputGestureText="Ctrl+D" x:Name="MiSubtract10Years" Click="MiSubtract10Years_Click"></MenuItem>
             </MenuItem>
+            <!--#endregion-->
+            <!--#region View Menu-->
+            <!-- Change Themes -->
+            <MenuItem Header="View">
+                <MenuItem Header="Themes">
+                    <MenuItem Header="_Season Theme" InputGestureText="Ctrl+V" x:Name="MiSeasonTheme" Click="MiSeasonTheme_Click"></MenuItem>
+                    <MenuItem Header="_Default Theme" InputGestureText="Ctrl+V" x:Name="MiDefaultTheme" Click="MiDefaultTheme_Click"></MenuItem>
+                <!-- Change Calendar Spacing -->
+                </MenuItem>
+                <MenuItem Header="_Compact View" InputGestureText="Ctrl+Z" x:Name="MiCompactView" Click="MiCompactView_Click"></MenuItem>
+                <MenuItem Header="_Normal View" InputGestureText="Ctrl+X" x:Name="MiNormalView" Click="MiNormalView_Click"></MenuItem>
+                <MenuItem Header="_Extended View" InputGestureText="Ctrl+C" x:Name="MiExtendedView" Click="MiExtendedView_Click"></MenuItem>
+            </MenuItem>
+            <!--#endregion-->
         </Menu>
         <!--#endregion-->
         <!--#region Header buttons -->
