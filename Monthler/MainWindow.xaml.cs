@@ -107,6 +107,32 @@ namespace Monthler
             => this.CalendarGroup.ResetCalendarDates();
 
         /// <summary>
+        /// Advances all calendars by one month
+        /// </summary>
+        private void MiAddMonth_Click(object sender, RoutedEventArgs e)
+        {
+            this.CalendarGroup.AddMonths(1);
+            if (!isDefaultTheme)
+            {
+                this.ApplySeasonalTheme();
+            }
+        }
+
+        /// <summary>
+        /// Subtracts all calendars by one month
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MiSubtractMonth_Click(object sender, RoutedEventArgs e)
+        {
+            this.CalendarGroup.AddMonths(-1);
+            if (!isDefaultTheme)
+            {
+                this.ApplySeasonalTheme();
+            }
+        }
+
+        /// <summary>
         /// Advances a year from all the calendars
         /// </summary>
         private void MiAdvanceYear_Click(object sender, RoutedEventArgs e)
@@ -152,13 +178,19 @@ namespace Monthler
         /// Applies a seasonal theme to each month
         /// </summary>
         private void ApplySeasonalTheme()
-            => this.CalendarGroup.Calendars.ForEach(cal => cal.Style = GetStyleOnMonth(cal.DisplayDate));
+        {
+            this.isDefaultTheme = false;
+            this.CalendarGroup.Calendars.ForEach(cal => cal.Style = GetStyleOnMonth(cal.DisplayDate));
+        }
 
         /// <summary>
         /// Changes the calendar themes to default colors
         /// </summary>
         private void ApplyDefaultTheme()
-            => this.CalendarGroup.Calendars.ForEach(cal => cal.Style = GetCalendarStyle(CalendarStyles.Default));
+        {
+            this.isDefaultTheme = true;
+            this.CalendarGroup.Calendars.ForEach(cal => cal.Style = GetCalendarStyle(CalendarStyles.Default));
+        }
 
 
         /// <summary>
@@ -264,6 +296,14 @@ namespace Monthler
                 RoutedCommand ResetDates = new RoutedCommand();
                 ResetDates.InputGestures.Add(new KeyGesture(Key.R, ModifierKeys.Control));
                 CommandBindings.Add(new CommandBinding(ResetDates, MiResetDates_Click));
+
+                RoutedCommand AddMonth = new RoutedCommand();
+                AddMonth.InputGestures.Add(new KeyGesture(Key.W, ModifierKeys.Control));
+                CommandBindings.Add(new CommandBinding(AddMonth, MiAddMonth_Click));
+
+                RoutedCommand SubtractMonth = new RoutedCommand();
+                SubtractMonth.InputGestures.Add(new KeyGesture(Key.Q, ModifierKeys.Control));
+                CommandBindings.Add(new CommandBinding(SubtractMonth, MiSubtractMonth_Click));
 
                 RoutedCommand AddYear = new RoutedCommand();
                 AddYear.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
